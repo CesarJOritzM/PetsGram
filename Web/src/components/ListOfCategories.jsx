@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Category from './Category';
+import { categories } from '../../db.json';
 
 // --------------- styles---------------
 const List = styled.ul`
@@ -18,9 +19,14 @@ const Item = styled.li`
 
 const ListOfCategories = () => (
   <List>
-    {[1, 2, 3, 4].map((category) => (
-      <Item key={category}>
-        <Category />
+    {categories.map((category) => (
+      <Item key={category.id}>
+        <Category
+          cover={category.cover}
+          path={category.path}
+          emoji={category.emoji}
+          name={category.name}
+        />
       </Item>
     ))}
   </List>

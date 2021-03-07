@@ -23,9 +23,9 @@ const Image = styled.img`
 `;
 // ---------------endStyles---------------
 
-const Category = ({ cover = DEFAULT_IMAGE, path, emoji = '?' }) => (
+const Category = ({ cover = DEFAULT_IMAGE, path, emoji = '?', name }) => (
   <Anchor href={path}>
-    <Image src={cover} alt="" />
+    <Image src={cover} alt={name} />
     {emoji}
   </Anchor>
 );
