@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const DEFAULT_IMAGE = 'https://i.imgur.com/dJa0Hpl.jpg';
 
-// --------------- styles---------------
 const Anchor = styled.a`
   display: flex;
   flex-direction: column;
@@ -11,7 +10,7 @@ const Anchor = styled.a`
   text-decoration: none;
   width: 75px;
 `;
-const Image = styled.img`
+const Img = styled.img`
   border: 1px solid #ddd;
   box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
@@ -21,11 +20,10 @@ const Image = styled.img`
   height: 75px;
   width: 75px;
 `;
-// ---------------endStyles---------------
 
 const Category = ({ cover = DEFAULT_IMAGE, path, emoji = '?', name }) => (
   <Anchor href={path}>
-    <Image src={cover} alt={name} />
+    <Img src={cover} alt={name} />
     {emoji}
   </Anchor>
 );
