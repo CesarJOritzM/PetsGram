@@ -9,6 +9,7 @@ const Logo = (props) => (
       background: '0 0',
     }}
     preserveAspectRatio="xMidYMid"
+    // eslint-disable-next-line react/jsx-props-no-spreading
     {...props}
   >
     <defs>

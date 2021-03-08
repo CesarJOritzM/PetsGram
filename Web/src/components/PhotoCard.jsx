@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdFavoriteBorder } from 'react-icons/md';
+import { fadeIn } from '../../assets/styles/Animation';
 
 const ImgWrapper = styled.div`
   border-radius: 10px;
@@ -12,6 +13,7 @@ const ImgWrapper = styled.div`
   width: 100%;
 `;
 const Img = styled.img`
+  ${fadeIn()};
   box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2);
   height: 100%;
   object-fit: cover;
