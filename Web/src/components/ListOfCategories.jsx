@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 import Category from './Category';
 import fadeIn from '../../assets/styles/animation/FadeIn';
-import { useFetch } from '../../hooks/useFetch';
+import useFetch from '../../hooks/useFetch';
 
 const List = styled.ul`
   display: flex;
@@ -41,7 +41,7 @@ const Item = styled.li`
 const ListOfCategories = () => {
   const [showFixed, setShowFixed] = useState(false);
   const url = 'https://pets-gram.vercel.app/categories';
-  const { data, loading } = useFetch(url);
+  const [data, loading] = useFetch(url);
 
   useEffect(() => {
     const onScroll = () => {

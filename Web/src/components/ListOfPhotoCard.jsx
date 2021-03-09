@@ -19,8 +19,8 @@ const ListOfPhotoCard = () => {
   return (
     <List>
       {photos.map((photo) => (
-        <Item key={photo.id}>
-          <PhotoCard id={photo.id} likes={photo.likes} src={photo.src} />
+        <Item key={photo}>
+          <PhotoCard id={photo} likes={photo.likes} src={photo.src} />
         </Item>
       ))}
     </List>

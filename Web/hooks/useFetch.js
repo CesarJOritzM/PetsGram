@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
-// eslint-disable-next-line import/prefer-default-export
-export const useFetch = (url) => {
+const useFetch = (url) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -21,5 +20,6 @@ export const useFetch = (url) => {
     }
   }, []);
 
-  return { data, error, loading };
+  return [data, error, loading];
 };
+export default useFetch;
