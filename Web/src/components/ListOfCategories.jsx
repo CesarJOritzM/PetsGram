@@ -10,6 +10,7 @@ const List = styled.ul`
   overflow: scroll;
   width: 100%;
   padding-bottom: 1rem;
+  ${fadeIn()};
   &::-webkit-scrollbar {
     display: none;
   }

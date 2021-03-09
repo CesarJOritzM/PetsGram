@@ -14,7 +14,7 @@ const Item = styled.li`
 `;
 
 const ListOfPhotoCard = () => {
-  const [photos, setPhotos] = useState([1, 2, 3, 4]);
+  const [photos, setPhotos] = useState([1, 2, 3, 4, 5, 6]);
 
   return (
     <List>
