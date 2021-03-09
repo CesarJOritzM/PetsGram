@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdFavoriteBorder } from 'react-icons/md';
-import { fadeIn } from '../../assets/styles/Animation';
+import fadeIn from '../../assets/styles/animation/FadeIn';
 
 const ImgWrapper = styled.div`
   border-radius: 10px;

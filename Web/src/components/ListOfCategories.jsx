@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
+import Skeleton from 'react-loading-skeleton';
 import Category from './Category';
-import { fadeIn } from '../../assets/styles/Animation';
+import fadeIn from '../../assets/styles/animation/FadeIn';
 import { useFetch } from '../../hooks/useFetch';
 
 const List = styled.ul`
@@ -9,7 +10,6 @@ const List = styled.ul`
   overflow: scroll;
   width: 100%;
   padding-bottom: 1rem;
-  ${fadeIn()};
   &::-webkit-scrollbar {
     display: none;
   }
@@ -40,7 +40,7 @@ const Item = styled.li`
 const ListOfCategories = () => {
   const [showFixed, setShowFixed] = useState(false);
   const url = 'https://pets-gram.vercel.app/categories';
-  const res = useFetch(url);
+  const { data, loading } = useFetch(url);
 
   useEffect(() => {
     const onScroll = () => {
@@ -55,7 +55,7 @@ const ListOfCategories = () => {
 
   const renderList = (fixed) => (
     <List fixed={fixed}>
-      {res.data.map((category) => (
+      {data.map((category) => (
         <Item key={category.id}>
           <Category
             cover={category.cover}
@@ -67,6 +67,28 @@ const ListOfCategories = () => {
       ))}
     </List>
   );
+  if (loading) {
+    return (
+      <List>
+        <Item>
+          {' '}
+          <Skeleton circle height={75} width={75} />
+        </Item>
+        <Item>
+          {' '}
+          <Skeleton circle height={75} width={75} />
+        </Item>
+        <Item>
+          {' '}
+          <Skeleton circle height={75} width={75} />
+        </Item>
+        <Item>
+          {' '}
+          <Skeleton circle height={75} width={75} />
+        </Item>
+      </List>
+    );
+  }
   return (
     <>
       {!showFixed && renderList(false)}
