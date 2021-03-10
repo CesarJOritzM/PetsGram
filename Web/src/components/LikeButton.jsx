@@ -7,21 +7,17 @@ const Button = styled.button`
   align-items: center;
   padding-top: 8px;
   & svg {
+    color: #f91212;
     margin-right: 4px;
   }
 `;
 
 const LikeButton = ({ likes, liked, onclick }) => {
   const size = '32px';
-  const iconStyles = { color: ' #F91212' };
 
   return (
     <Button type="button" onClick={() => onclick()}>
-      {liked ? (
-        <MdFavorite size={size} style={iconStyles} />
-      ) : (
-        <MdFavoriteBorder size={size} />
-      )}
+      {liked ? <MdFavorite size={size} /> : <MdFavoriteBorder size={size} />}
       {likes} Likes!
     </Button>
   );
