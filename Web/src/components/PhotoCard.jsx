@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
+import { Link } from '@reach/router';
 import fadeIn from '../assets/styles/animation/FadeIn';
 import useLocalStorage from '../hooks/useLocalStorage';
 import useNearScreen from '../hooks/useNearScreen';
@@ -60,11 +61,11 @@ const PhotoCard = ({ id, likes, src }) => {
     <Article ref={ref}>
       {show && (
         <>
-          <a href={`/details/${id}`}>
+          <Link to={`/detail/${id}`}>
             <ImgWrapper>
               <Img src={src} alt="" />
             </ImgWrapper>
-          </a>
+          </Link>
           <LikeButton likes={likes} liked={liked} onclick={handleLikeButton} />
         </>
       )}

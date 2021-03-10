@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link as LinkRouter } from '@reach/router';
 
 const DEFAULT_IMAGE = 'https://i.imgur.com/dJa0Hpl.jpg';
 
-const Anchor = styled.a`
+const Link = styled(LinkRouter)`
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -21,11 +22,11 @@ const Img = styled.img`
   width: 75px;
 `;
 
-const Category = ({ cover = DEFAULT_IMAGE, path, emoji = '?', name }) => (
-  <Anchor href={path}>
+const Category = ({ cover = DEFAULT_IMAGE, path = '#', emoji = '?', name }) => (
+  <Link to={path}>
     <Img src={cover} alt={name} />
     {emoji}
-  </Anchor>
+  </Link>
 );
 
 export default Category;

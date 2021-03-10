@@ -12,11 +12,16 @@ const Button = styled.button`
 `;
 
 const LikeButton = ({ likes, liked, onclick }) => {
-  const Icon = liked ? MdFavorite : MdFavoriteBorder;
+  const size = '32px';
+  const iconStyles = { color: ' #F91212' };
 
   return (
     <Button type="button" onClick={() => onclick()}>
-      <Icon size="32px" />
+      {liked ? (
+        <MdFavorite size={size} style={iconStyles} />
+      ) : (
+        <MdFavoriteBorder size={size} />
+      )}
       {likes} Likes!
     </Button>
   );
