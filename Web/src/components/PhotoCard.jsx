@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
+import { gql } from 'apollo-boost';
+import { useMutation } from '@apollo/react-hooks';
 import fadeIn from '../../assets/styles/animation/FadeIn';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import useNearScreen from '../../hooks/useNearScreen';
+import LikeButton from './LikeButton';
 
 const Article = styled.article`
-  min-height: 200px;
+  height: 250px;
+  width: 340px;
 `;
 const ImgWrapper = styled.div`
   border-radius: 10px;
@@ -26,24 +29,36 @@ const Img = styled.img`
   top: 0;
   width: 100%;
 `;
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  padding-top: 8px;
-  & svg {
-    margin-right: 4px;
+
+const LIKE_PHOTO = gql`
+  mutation likeAnonymousPhoto($input: LikePhoto!) {
+    likeAnonymousPhoto(input: $input) {
+      id
+      liked
+      likes
+    }
   }
 `;
 
-const DEFAULT_IMAGE =
-  'https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60';
-
-const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
+const PhotoCard = ({ id, likes, src }) => {
   const [show, ref] = useNearScreen();
   const key = `like-${id}`;
   const [liked, setLiked] = useLocalStorage(key, false);
-  const Icon = liked ? MdFavorite : MdFavoriteBorder;
+  const [likeAnonymousPhoto, { loading, error, data }] = useMutation(
+    LIKE_PHOTO,
+    {
+      variables: {
+        input: { id },
+      },
+    }
+  );
 
+  const handleLikeButton = () => {
+    if (!liked) {
+      setLiked(!liked);
+      likeAnonymousPhoto({ id });
+    }
+  };
   return (
     <Article ref={ref}>
       {show && (
@@ -53,10 +68,7 @@ const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
               <Img src={src} alt="" />
             </ImgWrapper>
           </a>
-          <Button type="button" onClick={() => setLiked(!liked)}>
-            <Icon size="32px" />
-            {likes} Likes!
-          </Button>
+          <LikeButton likes={likes} liked={liked} onclick={handleLikeButton} />
         </>
       )}
     </Article>

@@ -72,19 +72,15 @@ const ListOfCategories = () => {
     return (
       <List>
         <Item>
-          {' '}
           <Skeleton circle height={75} width={75} />
         </Item>
         <Item>
-          {' '}
           <Skeleton circle height={75} width={75} />
         </Item>
         <Item>
-          {' '}
           <Skeleton circle height={75} width={75} />
         </Item>
         <Item>
-          {' '}
           <Skeleton circle height={75} width={75} />
         </Item>
       </List>

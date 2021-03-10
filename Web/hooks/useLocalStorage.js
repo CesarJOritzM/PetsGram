@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const useLocalStorage = (key, initialValue) => {
-  const [error, setError] = useState(null);
   const [storedValue, setValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key);
@@ -10,7 +9,7 @@ const useLocalStorage = (key, initialValue) => {
       return initialValue;
     }
   });
-
+  const [error, setError] = useState(null);
   const setLocalStorage = (value) => {
     try {
       window.localStorage.setItem(key, JSON.stringify(value));
@@ -20,7 +19,7 @@ const useLocalStorage = (key, initialValue) => {
     }
   };
 
-  return [error, storedValue, setLocalStorage];
+  return [storedValue, setLocalStorage, error];
 };
 
 export default useLocalStorage;
