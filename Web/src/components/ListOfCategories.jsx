@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 import Category from './Category';
-import fadeIn from '../../assets/styles/animation/FadeIn';
-import useFetch from '../../hooks/useFetch';
+import fadeIn from '../assets/styles/animation/FadeIn';
+import useFetch from '../hooks/useFetch';
 
 const List = styled.ul`
   display: flex;

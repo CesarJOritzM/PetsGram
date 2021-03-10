@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-import fadeIn from '../../assets/styles/animation/FadeIn';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import useNearScreen from '../../hooks/useNearScreen';
+import fadeIn from '../assets/styles/animation/FadeIn';
+import useLocalStorage from '../hooks/useLocalStorage';
+import useNearScreen from '../hooks/useNearScreen';
 import LikeButton from './LikeButton';
 
 const Article = styled.article`
@@ -44,14 +44,11 @@ const PhotoCard = ({ id, likes, src }) => {
   const [show, ref] = useNearScreen();
   const key = `like-${id}`;
   const [liked, setLiked] = useLocalStorage(key, false);
-  const [likeAnonymousPhoto, { loading, error, data }] = useMutation(
-    LIKE_PHOTO,
-    {
-      variables: {
-        input: { id },
-      },
-    }
-  );
+  const [likeAnonymousPhoto] = useMutation(LIKE_PHOTO, {
+    variables: {
+      input: { id },
+    },
+  });
 
   const handleLikeButton = () => {
     if (!liked) {
