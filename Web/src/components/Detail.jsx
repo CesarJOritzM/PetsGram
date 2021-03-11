@@ -33,7 +33,6 @@ const Detail = ({ id }) => {
     );
   }
   if (error) {
-    console.log(error);
     return <h1>Ooopss... Ocurrio un error, vuelve a recargar la paguina </h1>;
   }
   return (
@@ -43,6 +42,7 @@ const Detail = ({ id }) => {
           id={data?.photo?.id}
           src={data?.photo?.src}
           likes={data?.photo?.likes}
+          liked={data?.photo?.liked}
         />
       </Item>
     </List>
