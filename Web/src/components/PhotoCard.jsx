@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { gql } from 'apollo-boost';
-import { useMutation } from '@apollo/react-hooks';
 import { Link } from '@reach/router';
 import fadeIn from '../assets/styles/animation/FadeIn';
-import useLocalStorage from '../hooks/useLocalStorage';
 import useNearScreen from '../hooks/useNearScreen';
 import LikeButton from './LikeButton';
 
@@ -31,32 +28,9 @@ const Img = styled.img`
   width: 100%;
 `;
 
-const LIKE_PHOTO = gql`
-  mutation likeAnonymousPhoto($input: LikePhoto!) {
-    likeAnonymousPhoto(input: $input) {
-      id
-      liked
-      likes
-    }
-  }
-`;
-
 const PhotoCard = ({ id, likes, src }) => {
   const [show, ref] = useNearScreen();
-  const key = `like-${id}`;
-  const [liked, setLiked] = useLocalStorage(key, false);
-  const [likeAnonymousPhoto] = useMutation(LIKE_PHOTO, {
-    variables: {
-      input: { id },
-    },
-  });
 
-  const handleLikeButton = () => {
-    if (!liked) {
-      setLiked(!liked);
-      likeAnonymousPhoto({ id });
-    }
-  };
   return (
     <Article ref={ref}>
       {show && (
@@ -66,7 +40,7 @@ const PhotoCard = ({ id, likes, src }) => {
               <Img src={src} alt="" />
             </ImgWrapper>
           </Link>
-          <LikeButton likes={likes} liked={liked} onclick={handleLikeButton} />
+          <LikeButton likes={likes} id={id} />
         </>
       )}
     </Article>

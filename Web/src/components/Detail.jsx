@@ -33,6 +33,7 @@ const Detail = ({ id }) => {
     );
   }
   if (error) {
+    console.log(error);
     return <h1>Ooopss... Ocurrio un error, vuelve a recargar la paguina </h1>;
   }
   return (

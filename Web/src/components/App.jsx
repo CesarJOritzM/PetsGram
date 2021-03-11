@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router } from '@reach/router';
+import Context from '../hooks/Context';
 
 import GlobalStyle from '../assets/styles/GlobalStyles';
 import Logo from '../assets/images/Logo';
@@ -10,8 +11,6 @@ import User from '../pages/User';
 import NotRegisterUser from '../pages/NotRegisterUser';
 import NavBar from './NavBar';
 
-const UserLogged = ({ children }) => children({ isAuth: true });
-
 const App = () => (
   <>
     <GlobalStyle />
@@ -19,10 +18,10 @@ const App = () => (
     <Router>
       <Home path="/" />
       <Home path="/pet/:id" />
-      <Details path="/detail/:detailId" />
+      <Details path="/detail/:id" />
     </Router>
 
-    <UserLogged>
+    <Context.Consumer>
       {({ isAuth }) =>
         isAuth ? (
           <Router>
@@ -36,7 +35,7 @@ const App = () => (
           </Router>
         )
       }
-    </UserLogged>
+    </Context.Consumer>
 
     <NavBar />
   </>
