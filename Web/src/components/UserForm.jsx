@@ -88,7 +88,7 @@ const UserForm = ({ title, onSubmit, loading, error }) => {
           {title}
         </Button>
       </div>
-      {error && <Error>Ops.. Ocurrio algo tal vez ya estes registado</Error>}
+      {error && <Error>{error}</Error>}
     </Form>
   );
 };
