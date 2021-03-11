@@ -68,7 +68,6 @@ const UserForm = ({ title, onSubmit, loading, error }) => {
     <Form method="POST" onSubmit={handleSubmit} disabled={loading}>
       <Title>{title}</Title>
       <Input
-        id="email"
         type="email"
         name="email"
         placeholder="Email ..."
@@ -77,7 +76,6 @@ const UserForm = ({ title, onSubmit, loading, error }) => {
         onChange={handleChange}
       />
       <Input
-        id="password"
         placeholder="Contaseña ..."
         type="password"
         name="password"
