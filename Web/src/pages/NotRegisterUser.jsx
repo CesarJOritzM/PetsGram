@@ -1,65 +1,47 @@
-import React from 'react';
-import Context from '../hooks/Context';
+import React, { useContext } from 'react';
+import { Context } from '../hooks/Context';
 import UserForm from '../components/UserForm';
 import useRegister from '../hooks/useRegister';
 import useLogin from '../hooks/useLogin';
 
 const NotRegisteredUser = () => {
-  const {
-    register,
-    loading: loadingRegister,
-    error: errorRegister,
-  } = useRegister();
+  const { activateAuth } = useContext(Context);
+  const { register, loading, error } = useRegister();
   const { login, loading: loadingLogin, error: erroLogin } = useLogin();
 
-  const Registro = ({ activateAuth }) => {
-    const onSubmit = ({ email, password }) => {
-      const input = { email, password };
-      const variables = { input };
-      register({ variables }).then(() => {
-        activateAuth();
-      });
-    };
-    const errorMsg =
-      errorRegister && 'Ops.. Ocurrio algo tal vez ya estes registado';
-    return (
-      <UserForm
-        onSubmit={onSubmit}
-        title="Registrarse"
-        error={errorMsg}
-        loading={loadingRegister}
-      />
-    );
+  const handleRegister = ({ email, password }) => {
+    const input = { email, password };
+    const variables = { input };
+    register({ variables }).then(({ data }) => {
+      activateAuth(data.signup);
+    });
   };
 
-  const Login = ({ activateAuth }) => {
-    const onSubmit = ({ email, password }) => {
-      const input = { email, password };
-      const variables = { input };
-      login({ variables }).then(() => {
-        activateAuth();
-      });
-    };
-    const errorMsg =
-      erroLogin && 'La contraseña no es correcta o el usuario no existe';
-    return (
+  const handleLogin = ({ email, password }) => {
+    const input = { email, password };
+    const variables = { input };
+    login({ variables }).then(({ data }) => {
+      activateAuth(data.login);
+    });
+  };
+
+  return (
+    <>
       <UserForm
-        onSubmit={onSubmit}
+        onSubmit={handleRegister}
+        title="Registrarse"
+        error={error && 'Ops.. Ocurrio algo tal vez ya estes registado'}
+        loading={loading}
+      />
+      <UserForm
+        onSubmit={handleLogin}
         title="Iniciar sesión"
-        error={errorMsg}
+        error={
+          erroLogin && 'La contraseña no es correcta o el usuario no existe'
+        }
         loading={loadingLogin}
       />
-    );
-  };
-  return (
-    <Context.Consumer>
-      {({ activateAuth }) => (
-        <>
-          <Registro activateAuth={activateAuth} />
-          <Login activateAuth={activateAuth} />
-        </>
-      )}
-    </Context.Consumer>
+    </>
   );
 };
 

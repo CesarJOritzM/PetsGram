@@ -28,7 +28,7 @@ const Img = styled.img`
   width: 100%;
 `;
 
-const PhotoCard = ({ id, likes, src }) => {
+const PhotoCard = ({ id, likes, src, liked }) => {
   const [show, ref] = useNearScreen();
 
   return (
@@ -40,7 +40,7 @@ const PhotoCard = ({ id, likes, src }) => {
               <Img src={src} alt="" />
             </ImgWrapper>
           </Link>
-          <LikeButton likes={likes} id={id} />
+          <LikeButton likes={likes} id={id} liked={liked} />
         </>
       )}
     </Article>

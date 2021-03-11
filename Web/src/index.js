@@ -7,6 +7,15 @@ import App from './components/App';
 
 const client = new ApolloClient({
   uri: 'https://pets-gram.vercel.app/graphql',
+  request: (operation) => {
+    const token = window.sessionStorage.getItem('token');
+    const authorization = token ? `Bearer ${token}` : '';
+    operation.setContext({
+      headers: {
+        authorization,
+      },
+    });
+  },
 });
 
 ReactDOM.render(
