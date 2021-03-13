@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Context } from '../hooks/Context';
 
@@ -18,6 +19,10 @@ const User = () => {
   const { removeAuth } = useContext(Context);
   return (
     <>
+      <Helmet>
+        <title> Perfil | Petgram </title>
+        <meta name="description" content="Aquí puedes editar tu perfil" />
+      </Helmet>
       <h1>User</h1>
       <Button onClick={removeAuth}>Cerrar sesión</Button>
     </>

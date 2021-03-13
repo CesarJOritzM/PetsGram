@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 import Favorites from '../components/Favorites';
 
 const Title = styled.h2`
@@ -10,6 +11,10 @@ const Title = styled.h2`
 
 const Favs = () => (
   <>
+    <Helmet>
+      <title> Tus Favoritos | Petgram </title>
+      <meta name="description" content="Aquí puedes encontrar tus favoritos" />
+    </Helmet>
     <Title>Favoritos</Title>
     <Favorites />;
   </>
