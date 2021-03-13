@@ -5,20 +5,17 @@ This is a replica of Instagram but with pets
 test user is test@test.com and password test
 but you can create your own
 
-# 🤖 Guía Rápida
+### 🤖 Guía Rápida
 
 **Starts to develop.**
 Install dependencies
 
-    ```
-    npm install
-    ```
+`npm install`
 
-Inicia el proyecto
+strart project
 
-    ```
-    npm run dev
-    ```
+`npm run dev`
+`npm run build`
 
 The site will be available at http://localhost:3005.
 
