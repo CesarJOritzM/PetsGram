@@ -17,4 +17,7 @@ const Home = ({ id }) => (
   </>
 );
 
-export default Home;
+export default React.memo(
+  Home,
+  (prevProps, props) => prevProps.id === props.id
+);

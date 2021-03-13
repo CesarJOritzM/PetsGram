@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack --mode development",
+    "serve:dev": "npm run build && npx serve dist -s",
     "format": "prettier --write '{*.js,src/**/*.{js,jsx}}'",
     "lint": "eslint src/ --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,7 +30,8 @@
     "html-webpack-plugin": "^5.3.0",
     "webpack": "^5.24.3",
     "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "webpack-pwa-manifest": "^4.3.0"
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",

@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackPwaManifestPlugin = require('webpack-pwa-manifest');
 
 module.exports = {
   entry: './src/index.js',
@@ -37,6 +38,26 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: './index.html',
+    }),
+    new WebpackPwaManifestPlugin({
+      filename: 'manifest.webmanifest',
+      name: 'IntaPlatzi',
+      description:
+        'Tu app preferida para encontrar esas mascotas que tanto te encantan',
+      orientation: 'portrait',
+      display: 'standalone',
+      start_url: '/',
+      scope: '/',
+      background_color: '#fff',
+      theme_color: '#b1a',
+      icons: [
+        {
+          src: path.resolve(__dirname, './public/icon/icon.png'),
+          sizes: [96, 128, 192, 256, 384, 512],
+          destination: path.join('Icons'),
+          ios: true,
+        },
+      ],
     }),
   ],
   devServer: {
