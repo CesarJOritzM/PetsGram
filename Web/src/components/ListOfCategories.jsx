@@ -8,11 +8,12 @@ import useFetch from '../hooks/useFetch';
 const List = styled.ul`
   display: flex;
   overflow: scroll;
-  width: 100%;
+  width: 400px;
   padding-bottom: 1rem;
+  margin: 0 auto;
   ${fadeIn()};
   &::-webkit-scrollbar {
-    display: none;
+    display: inline;
   }
   ${(props) =>
     props.fixed &&

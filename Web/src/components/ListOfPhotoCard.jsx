@@ -5,16 +5,19 @@ import { gql } from 'apollo-boost';
 import Skeleton from 'react-loading-skeleton';
 import PhotoCard from './PhotoCard';
 
-
 export const List = styled.ul`
   overflow: scroll;
   width: 100%;
+  margin: 0 0 30px 0;
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 export const Item = styled.li`
   padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const GET_PHOTOS = gql`
